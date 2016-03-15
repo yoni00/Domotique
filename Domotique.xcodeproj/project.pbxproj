@@ -12,13 +12,6 @@
 		871C55FE1C44542C009D5B2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871C55FC1C44542C009D5B2E /* Main.storyboard */; };
 		871C56001C44542C009D5B2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871C55FF1C44542C009D5B2E /* Assets.xcassets */; };
 		871C56031C44542C009D5B2E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871C56011C44542C009D5B2E /* LaunchScreen.storyboard */; };
-		871C561B1C454ACF009D5B2E /* Quicksand-Dash.otf in Resources */ = {isa = PBXBuildFile; fileRef = 871C56141C454ACF009D5B2E /* Quicksand-Dash.otf */; };
-		871C561C1C454ACF009D5B2E /* Quicksand-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 871C56151C454ACF009D5B2E /* Quicksand-Bold.otf */; };
-		871C561D1C454ACF009D5B2E /* Quicksand-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 871C56161C454ACF009D5B2E /* Quicksand-BoldItalic.otf */; };
-		871C561E1C454ACF009D5B2E /* Quicksand-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 871C56171C454ACF009D5B2E /* Quicksand-Italic.otf */; };
-		871C561F1C454ACF009D5B2E /* Quicksand-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 871C56181C454ACF009D5B2E /* Quicksand-Light.otf */; };
-		871C56201C454ACF009D5B2E /* Quicksand-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 871C56191C454ACF009D5B2E /* Quicksand-LightItalic.otf */; };
-		871C56211C454ACF009D5B2E /* Quicksand-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 871C561A1C454ACF009D5B2E /* Quicksand-Regular.otf */; };
 		871C56301C455729009D5B2E /* MySingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C562F1C455729009D5B2E /* MySingleton.swift */; };
 		8720B8EF1C6CC2660013A5D7 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8720B8EE1C6CC2660013A5D7 /* Reachability.m */; };
 		87431E801C459E0C0030009B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87431E7F1C459E0C0030009B /* MainViewController.swift */; };
@@ -34,13 +27,6 @@
 		871C55FF1C44542C009D5B2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		871C56021C44542C009D5B2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		871C56041C44542C009D5B2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		871C56141C454ACF009D5B2E /* Quicksand-Dash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Dash.otf"; sourceTree = "<group>"; };
-		871C56151C454ACF009D5B2E /* Quicksand-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.otf"; sourceTree = "<group>"; };
-		871C56161C454ACF009D5B2E /* Quicksand-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-BoldItalic.otf"; sourceTree = "<group>"; };
-		871C56171C454ACF009D5B2E /* Quicksand-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Italic.otf"; sourceTree = "<group>"; };
-		871C56181C454ACF009D5B2E /* Quicksand-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.otf"; sourceTree = "<group>"; };
-		871C56191C454ACF009D5B2E /* Quicksand-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-LightItalic.otf"; sourceTree = "<group>"; };
-		871C561A1C454ACF009D5B2E /* Quicksand-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.otf"; sourceTree = "<group>"; };
 		871C562F1C455729009D5B2E /* MySingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySingleton.swift; sourceTree = "<group>"; };
 		8720B8ED1C6CC2660013A5D7 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8720B8EE1C6CC2660013A5D7 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -110,7 +96,6 @@
 		871C560A1C4458EE009D5B2E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				871C56221C454AD5009D5B2E /* Quicksand */,
 				871C55FF1C44542C009D5B2E /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -139,20 +124,6 @@
 				871C56041C44542C009D5B2E /* Info.plist */,
 			);
 			name = Plist;
-			sourceTree = "<group>";
-		};
-		871C56221C454AD5009D5B2E /* Quicksand */ = {
-			isa = PBXGroup;
-			children = (
-				871C56141C454ACF009D5B2E /* Quicksand-Dash.otf */,
-				871C56151C454ACF009D5B2E /* Quicksand-Bold.otf */,
-				871C56161C454ACF009D5B2E /* Quicksand-BoldItalic.otf */,
-				871C56171C454ACF009D5B2E /* Quicksand-Italic.otf */,
-				871C56181C454ACF009D5B2E /* Quicksand-Light.otf */,
-				871C56191C454ACF009D5B2E /* Quicksand-LightItalic.otf */,
-				871C561A1C454ACF009D5B2E /* Quicksand-Regular.otf */,
-			);
-			name = Quicksand;
 			sourceTree = "<group>";
 		};
 		8720B8EC1C6CC23C0013A5D7 /* Reachability */ = {
@@ -237,14 +208,7 @@
 			files = (
 				871C56031C44542C009D5B2E /* LaunchScreen.storyboard in Resources */,
 				871C56001C44542C009D5B2E /* Assets.xcassets in Resources */,
-				871C561F1C454ACF009D5B2E /* Quicksand-Light.otf in Resources */,
-				871C561D1C454ACF009D5B2E /* Quicksand-BoldItalic.otf in Resources */,
-				871C56211C454ACF009D5B2E /* Quicksand-Regular.otf in Resources */,
 				871C55FE1C44542C009D5B2E /* Main.storyboard in Resources */,
-				871C561B1C454ACF009D5B2E /* Quicksand-Dash.otf in Resources */,
-				871C561C1C454ACF009D5B2E /* Quicksand-Bold.otf in Resources */,
-				871C56201C454ACF009D5B2E /* Quicksand-LightItalic.otf in Resources */,
-				871C561E1C454ACF009D5B2E /* Quicksand-Italic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

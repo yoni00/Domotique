@@ -206,6 +206,68 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
             self.writeData("*#2*0##", withTimeout: 5.0, tag: TAG_DECOUVERTE_VOLETS)
             self.readData(5.0, tag: TAG_DECOUVERTE_VOLETS)
         })
+        let ajouterLumiereAction = UIAlertAction(title: "Ajouter une lumière", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            var indexTextField: UITextField?
+            let alertController = UIAlertController(title: "Ajouter une lumière", message: nil, preferredStyle: .Alert)
+            alertController.view.tintColor = UIColor(red: 61.0/255.0, green: 150.0/255.0, blue: 225.0/255.0, alpha: 1.0)
+            let ajouter = UIAlertAction(title: "Ajouter", style: .Default, handler: {
+                (action) -> Void in
+                if !indexTextField!.text!.isEmpty {
+                    if let index = Int(indexTextField!.text!) {
+                        let lumiereArray = ["1", "Index \(index)", "\(index)"]
+                        self.decouverteArray.insert(lumiereArray, atIndex: 0)
+                        let userDefaults = NSUserDefaults.standardUserDefaults()
+                        userDefaults.setObject(self.decouverteArray, forKey: "decouverte")
+                        self.collectionView.reloadData()
+                    }
+                }
+            })
+            let annuler = UIAlertAction(title: "Annuler", style: .Cancel) {
+                (action) -> Void in
+                
+            }
+            alertController.addAction(ajouter)
+            alertController.addAction(annuler)
+            alertController.addTextFieldWithConfigurationHandler {
+                (textField) -> Void in
+                indexTextField = textField
+                indexTextField?.placeholder = "Index"
+                indexTextField?.keyboardType = .NumberPad
+            }
+            self.presentViewController(alertController, animated: true, completion: nil)
+        })
+        let ajouterVoletAction = UIAlertAction(title: "Ajouter un volet", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            var indexTextField: UITextField?
+            let alertController = UIAlertController(title: "Ajouter un volet", message: nil, preferredStyle: .Alert)
+            alertController.view.tintColor = UIColor(red: 61.0/255.0, green: 150.0/255.0, blue: 225.0/255.0, alpha: 1.0)
+            let ajouter = UIAlertAction(title: "Ajouter", style: .Default, handler: {
+                (action) -> Void in
+                if !indexTextField!.text!.isEmpty {
+                    if let index = Int(indexTextField!.text!) {
+                        let voletArray = ["2", "Index \(index)", "\(index)"]
+                        self.decouverteArray.insert(voletArray, atIndex: 0)
+                        let userDefaults = NSUserDefaults.standardUserDefaults()
+                        userDefaults.setObject(self.decouverteArray, forKey: "decouverte")
+                        self.collectionView.reloadData()
+                    }
+                }
+            })
+            let annuler = UIAlertAction(title: "Annuler", style: .Cancel) {
+                (action) -> Void in
+                
+            }
+            alertController.addAction(ajouter)
+            alertController.addAction(annuler)
+            alertController.addTextFieldWithConfigurationHandler {
+                (textField) -> Void in
+                indexTextField = textField
+                indexTextField?.placeholder = "Index"
+                indexTextField?.keyboardType = .NumberPad
+            }
+            self.presentViewController(alertController, animated: true, completion: nil)
+        })
         let adresseAction = UIAlertAction(title: "Adresse du serveur domotique", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             if self.GCDSocket.isConnected {
@@ -218,6 +280,8 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
             
         })
         alertController.addAction(decouverteAction)
+        alertController.addAction(ajouterLumiereAction)
+        alertController.addAction(ajouterVoletAction)
         alertController.addAction(adresseAction)
         alertController.addAction(annulerAction)
         if let popoverController = alertController.popoverPresentationController {
@@ -714,6 +778,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
                 (textField) -> Void in
                 nomTextField = textField
                 nomTextField?.placeholder = self.decouverteArray[indexPath.row][1]
+                nomTextField?.keyboardType = .Default
             }
             presentViewController(alertController, animated: true, completion: nil)
         }
