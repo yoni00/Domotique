@@ -28,6 +28,9 @@ let TAG_LUMIERE_ETEINDRE = 1000
 let TAG_LUMIERE_ALLUMER = 2000
 let TAG_VOLET_FERMER = 3000
 let TAG_VOLET_OUVRIR = 4000
+let SHOW_LIGHT_SHUTTER = "12"
+let SHOW_LIGHT = "1"
+let SHOW_SHUTTER = "2"
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,6 +47,9 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var rightBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var lightShutterButton: UIBarButtonItem!
+    @IBOutlet weak var lightButton: UIBarButtonItem!
+    @IBOutlet weak var shutterButton: UIBarButtonItem!
     
     var GCDSocket: GCDAsyncSocket!
     var ipAddress: String = ""
@@ -98,6 +104,9 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
     override func viewWillAppear(animated: Bool) {
         if self.decouverteArray.count == 0 {
             self.navigationItem.leftBarButtonItem?.enabled = false
+            self.lightShutterButton.enabled = false
+            self.lightButton.enabled = false
+            self.shutterButton.enabled = false
         }
     }
     
@@ -182,6 +191,21 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
         }
     }
     
+    func filterDecouverteArray(show: String) {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        self.decouverteArray = userDefaults.objectForKey("decouverte") as! [[String]]
+        if show != SHOW_LIGHT_SHUTTER {
+            var tempArray: [[String]] = []
+            for (_, item) in self.decouverteArray.enumerate() {
+                if item[0] == show {
+                    tempArray.append(item)
+                }
+            }
+            self.decouverteArray = tempArray
+        }
+        self.collectionView.reloadData()
+    }
+    
     
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //  MARK:   @IBAction
@@ -206,10 +230,10 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
             self.writeData("*#2*0##", withTimeout: 5.0, tag: TAG_DECOUVERTE_VOLETS)
             self.readData(5.0, tag: TAG_DECOUVERTE_VOLETS)
         })
-        let ajouterLumiereAction = UIAlertAction(title: "Ajouter une lumière", style: .Default, handler: {
+        let ajouterLumiereAction = UIAlertAction(title: "Ajout d'une lumière", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             var indexTextField: UITextField?
-            let alertController = UIAlertController(title: "Ajouter une lumière", message: nil, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Ajout d'une lumière", message: nil, preferredStyle: .Alert)
             alertController.view.tintColor = UIColor(red: 61.0/255.0, green: 150.0/255.0, blue: 225.0/255.0, alpha: 1.0)
             let ajouter = UIAlertAction(title: "Ajouter", style: .Default, handler: {
                 (action) -> Void in
@@ -237,10 +261,10 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
             }
             self.presentViewController(alertController, animated: true, completion: nil)
         })
-        let ajouterVoletAction = UIAlertAction(title: "Ajouter un volet", style: .Default, handler: {
+        let ajouterVoletAction = UIAlertAction(title: "Ajout d'un volet", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
             var indexTextField: UITextField?
-            let alertController = UIAlertController(title: "Ajouter un volet", message: nil, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Ajout d'un volet", message: nil, preferredStyle: .Alert)
             alertController.view.tintColor = UIColor(red: 61.0/255.0, green: 150.0/255.0, blue: 225.0/255.0, alpha: 1.0)
             let ajouter = UIAlertAction(title: "Ajouter", style: .Default, handler: {
                 (action) -> Void in
@@ -288,6 +312,22 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
             popoverController.barButtonItem = self.rightBarButtonItem
         }
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    ///////////////////////////////////////////////////////
+    //  MARK:   ToolBar
+    ///////////////////////////////////////////////////////
+    
+    @IBAction func showLightShutter(sender: AnyObject) {
+        self.filterDecouverteArray(SHOW_LIGHT_SHUTTER)
+    }
+    
+    @IBAction func showLight(sender: AnyObject) {
+        self.filterDecouverteArray(SHOW_LIGHT)
+    }
+    
+    @IBAction func showShutter(sender: AnyObject) {
+        self.filterDecouverteArray(SHOW_SHUTTER)
     }
     
     
@@ -451,6 +491,9 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
             self.collectionView.reloadData()
             if self.decouverteArray.count != 0 {
                 self.navigationItem.leftBarButtonItem?.enabled = true
+                self.lightShutterButton.enabled = true
+                self.lightButton.enabled = true
+                self.shutterButton.enabled = true
             }
             self.decouverteLumieres = false
             self.decouverteVolets = false
@@ -748,6 +791,9 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
             if self.decouverteArray.count == 0 {
                 self.setEditing(false, animated: true)
                 self.navigationItem.leftBarButtonItem?.enabled = false
+                self.lightShutterButton.enabled = false
+                self.lightButton.enabled = false
+                self.shutterButton.enabled = false
             }
         }
     }

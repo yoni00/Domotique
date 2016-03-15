@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1Iy-J0-HCF">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="zef-IL-MQG" customClass="ReorderableFlowLayout" customModule="Domotique" customModuleProvider="target">
                                     <size key="itemSize" width="500" height="80"/>
@@ -192,19 +192,48 @@
                                     <outlet property="delegate" destination="ljC-cW-cdw" id="oNT-g7-rJy"/>
                                 </connections>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="80R-4v-C8w">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="wRb-Ck-s3D"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="ToolBarLightShutter" id="omJ-1F-yQN">
+                                        <connections>
+                                            <action selector="showLightShutter:" destination="ljC-cW-cdw" id="vNN-7L-2OU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="JTd-qZ-ClK"/>
+                                    <barButtonItem image="ToolBarLight" id="tZ5-hH-1Np">
+                                        <connections>
+                                            <action selector="showLight:" destination="ljC-cW-cdw" id="oVq-Tu-AnL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="yww-lg-C7h"/>
+                                    <barButtonItem image="ToolBarShutter" id="qNb-xT-9Qj">
+                                        <connections>
+                                            <action selector="showShutter:" destination="ljC-cW-cdw" id="FAJ-qR-AT0"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" red="0.23921568627450979" green="0.58823529411764708" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9K8-aD-LHK" firstAttribute="top" secondItem="1Iy-J0-HCF" secondAttribute="bottom" id="8Fs-g8-A3Q"/>
+                            <constraint firstItem="80R-4v-C8w" firstAttribute="top" secondItem="1Iy-J0-HCF" secondAttribute="bottom" id="6h3-wQ-euV"/>
+                            <constraint firstItem="80R-4v-C8w" firstAttribute="leading" secondItem="kN7-CS-Auq" secondAttribute="leading" id="Gye-v5-ohd"/>
                             <constraint firstItem="1Iy-J0-HCF" firstAttribute="leading" secondItem="kN7-CS-Auq" secondAttribute="leading" id="KSm-fF-WfT"/>
                             <constraint firstAttribute="trailing" secondItem="1Iy-J0-HCF" secondAttribute="trailing" id="QrA-eF-peh"/>
                             <constraint firstItem="1Iy-J0-HCF" firstAttribute="top" secondItem="kN7-CS-Auq" secondAttribute="top" id="aTe-Uy-cxM"/>
+                            <constraint firstAttribute="trailing" secondItem="80R-4v-C8w" secondAttribute="trailing" id="hxl-I9-xKD"/>
+                            <constraint firstItem="9K8-aD-LHK" firstAttribute="top" secondItem="80R-4v-C8w" secondAttribute="bottom" id="nAJ-36-R9V"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Domotique" id="Bic-zZ-6cP">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="wfC-pP-ysC">
-                            <color key="tintColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.23921568627450979" green="0.58823529411764708" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="showActionSheet:" destination="ljC-cW-cdw" id="pVF-03-0sE"/>
                             </connections>
@@ -215,7 +244,10 @@
                     <connections>
                         <outlet property="collectionView" destination="1Iy-J0-HCF" id="nVy-5N-CKI"/>
                         <outlet property="flowLayout" destination="zef-IL-MQG" id="sao-1R-05N"/>
+                        <outlet property="lightButton" destination="tZ5-hH-1Np" id="qw2-Xu-bJ3"/>
+                        <outlet property="lightShutterButton" destination="omJ-1F-yQN" id="nZK-9a-jp8"/>
                         <outlet property="rightBarButtonItem" destination="wfC-pP-ysC" id="sns-8t-bOs"/>
+                        <outlet property="shutterButton" destination="qNb-xT-9Qj" id="09b-Ob-6xW"/>
                         <segue destination="ec0-c9-d3q" kind="presentation" identifier="ShowAddress" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="5un-xV-twI"/>
                     </connections>
                 </viewController>
@@ -356,5 +388,8 @@
         <image name="CellErase" width="40" height="40"/>
         <image name="CellLightOff" width="225" height="225"/>
         <image name="CellShutter" width="225" height="225"/>
+        <image name="ToolBarLight" width="22" height="22"/>
+        <image name="ToolBarLightShutter" width="44" height="22"/>
+        <image name="ToolBarShutter" width="22" height="22"/>
     </resources>
 </document>
