@@ -878,6 +878,13 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
         singleTapGestureEraseImage.numberOfTouchesRequired = 1
         eraseImageView.addGestureRecognizer(singleTapGestureEraseImage)
         
+        if cellReuseIdentifier == "CellShutter" {
+            var cellShutterButton = cell.viewWithTag(22) as! UIButton
+            cellShutterButton.setTitle("Fermer", forState: .Normal)
+            cellShutterButton = cell.viewWithTag(23) as! UIButton
+            cellShutterButton.setTitle("Ouvrir", forState: .Normal)
+        }
+        
         return cell
     }
     

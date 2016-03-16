@@ -388,8 +388,8 @@
         <image name="CellErase" width="40" height="40"/>
         <image name="CellLightOff" width="225" height="225"/>
         <image name="CellShutter" width="225" height="225"/>
-        <image name="ToolBarLight" width="22" height="22"/>
-        <image name="ToolBarLightShutter" width="44" height="22"/>
-        <image name="ToolBarShutter" width="22" height="22"/>
+        <image name="ToolBarLight" width="25" height="25"/>
+        <image name="ToolBarLightShutter" width="50" height="25"/>
+        <image name="ToolBarShutter" width="25" height="25"/>
     </resources>
 </document>
