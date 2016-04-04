@@ -31,7 +31,7 @@ class AddressViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for var i = 0; i < 256; i++ {
+        for i in 0 ..< 256 {
             self.pickerViewData.append("\(i)")
         }
     }
@@ -59,7 +59,7 @@ class AddressViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     @IBAction func touchUpInsideContinuerButton(sender: AnyObject) {
         self.ipAddress = ""
-        for var i = 0; i < 4; i++ {
+        for i in 0 ..< 4 {
             self.ipAddress += self.pickerViewData[self.pickerView.selectedRowInComponent(i)] + "."
         }
         self.ipAddress = String(self.ipAddress.characters.dropLast())
@@ -92,7 +92,7 @@ class AddressViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     func pickerViewShowIp(ipAddress: String) {
         let array = ipAddress.componentsSeparatedByString(".")
-        for var i = 0; i < 4; i++ {
+        for i in 0 ..< 4 {
             self.pickerView.selectRow(Int(array[i])!, inComponent: i, animated: true)
         }
     }

@@ -86,7 +86,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.collectionView.addSubview(refreshControl)
         */
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: "didLongPressCollectionView:")
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(MainViewController.didLongPressCollectionView(_:)))
         longPressGesture.minimumPressDuration = 0.3
         self.collectionView.addGestureRecognizer(longPressGesture)
         self.progressHUDSocket = JGProgressHUD(style: .ExtraLight)
@@ -417,7 +417,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
                 var messageList = message.componentsSeparatedByString("##")
                 messageList.removeLast()
                 messageList.removeLast()
-                for var i = 0; i < messageList.count; i++ {
+                for i in 0 ..< messageList.count {
                     let temporaryArray = messageList[i].componentsSeparatedByString("*")
                     self.decouverteArray.append([temporaryArray[1], "Index \(temporaryArray.last!)", temporaryArray.last!])
                 }
@@ -429,7 +429,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
                 var messageList = message.componentsSeparatedByString("##")
                 messageList.removeLast()
                 messageList.removeLast()
-                for var i: Int = 0; i < messageList.count; i++ {
+                for i: Int in 0 ..< messageList.count {
                     let temporaryArray = messageList[i].componentsSeparatedByString("*")
                     self.decouverteArray.append([temporaryArray[1], "Index \(temporaryArray.last!)", temporaryArray.last!])
                     // self.etatVolets.append(["\(temporaryArray.last!)", "1"])
@@ -639,7 +639,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
                         self.timers.removeValueForKey(anIndexPathRow)
                     }
                 }
-                self.timers[indexPath.row] = NSTimer.scheduledTimerWithTimeInterval(45.0, target: self, selector: "timerAction:", userInfo: [indexPath.row, cell, "Fermer"], repeats: false)
+                self.timers[indexPath.row] = NSTimer.scheduledTimerWithTimeInterval(45.0, target: self, selector: #selector(MainViewController.timerAction(_:)), userInfo: [indexPath.row, cell, "Fermer"], repeats: false)
             case "Stop":
                 if Int(index) == 200 {
                     for index in 0...9 {
@@ -706,7 +706,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
                         self.timers.removeValueForKey(anIndexPathRow)
                     }
                 }
-                self.timers[indexPath.row] = NSTimer.scheduledTimerWithTimeInterval(45.0, target: self, selector: "timerAction:", userInfo: [indexPath.row, cell, "Ouvrir"], repeats: false)
+                self.timers[indexPath.row] = NSTimer.scheduledTimerWithTimeInterval(45.0, target: self, selector: #selector(MainViewController.timerAction(_:)), userInfo: [indexPath.row, cell, "Ouvrir"], repeats: false)
             case "Stop":
                 if Int(index) == 200 {
                     for index in 0...9 {
@@ -734,8 +734,9 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
     }
     
     func timerAction(timer: NSTimer) {
-        let cell = timer.userInfo![1] as! UICollectionViewCell
-        switch(timer.userInfo![2] as! String) {
+        let info = timer.userInfo as! [AnyObject]
+        let cell = info[1] as! UICollectionViewCell
+        switch(info[2] as! String) {
         case "Fermer":
             let cellShutterButton = cell.viewWithTag(22) as! UIButton
             cellShutterButton.setTitle("Fermer", forState: .Normal)
@@ -745,7 +746,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
         default: ()
         }
         for (anIndexPathRow, _) in self.timers {
-            if anIndexPathRow == timer.userInfo![0] as! Int {
+            if anIndexPathRow == info[0] as! Int {
                 self.timers.removeValueForKey(anIndexPathRow)
             }
         }
@@ -861,7 +862,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
         
         let label = cell.viewWithTag(labelTag) as! UILabel
         label.text = self.decouverteArray[indexPath.row][1]
-        let singleTapGestureLabel: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didSingleTapLabel:")
+        let singleTapGestureLabel: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainViewController.didSingleTapLabel(_:)))
         singleTapGestureLabel.numberOfTapsRequired = 1
         singleTapGestureLabel.numberOfTouchesRequired = 1
         label.addGestureRecognizer(singleTapGestureLabel)
@@ -873,7 +874,7 @@ class MainViewController: UIViewController, GCDAsyncSocketDelegate, DZNEmptyData
         else {
             eraseImageView.hidden = true
         }
-        let singleTapGestureEraseImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didSingleTapErase:")
+        let singleTapGestureEraseImage: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MainViewController.didSingleTapErase(_:)))
         singleTapGestureEraseImage.numberOfTapsRequired = 1
         singleTapGestureEraseImage.numberOfTouchesRequired = 1
         eraseImageView.addGestureRecognizer(singleTapGestureEraseImage)
