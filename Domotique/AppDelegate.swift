@@ -14,15 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        // Navigation Bar
-        /*
-        let appearance = UINavigationBar.appearance()
-        appearance.titleTextAttributes = [
-            NSFontAttributeName: UIFont(name: "Quicksand-Bold", size: 20)!,
-            NSForegroundColorAttributeName: UIColor(red: 44.0/255.0, green: 49.0/255.0, blue: 51.0/255.0, alpha: 1)
-        ]
-        */
+        if let okWindow = window {
+            okWindow.backgroundColor = UIColor.whiteColor()
+            okWindow.clipsToBounds = true
+            okWindow.makeKeyAndVisible()
+            okWindow.rootViewController = UINavigationController(rootViewController: HomeViewController())
+        }
         
         return true
     }
