@@ -9,15 +9,15 @@
 import UIKit
 import AVFoundation
 
-class HomeViewController: UIViewController {
-    var isEditingMode = false
+private enum PictureFrom : Int {
     
-    lazy var captureSession: AVCaptureSession = {
-        let _captureSession = AVCaptureSession()
-        _captureSession.sessionPreset = AVCaptureSessionPresetHigh
-        
-        return _captureSession
-    }()
+    case Camera
+    case CameraRoll
+}
+
+
+class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var isEditingMode = false
     
     //MARK: - UI Components
     
@@ -40,10 +40,16 @@ class HomeViewController: UIViewController {
         return _pictureButton
     }()
     
-    lazy var backgroundPicture: UIImageView = {
+    private lazy var backgroundPicture: UIImageView = {
         let _backgroundPicture = UIImageView()
         _backgroundPicture.contentMode = .ScaleAspectFill
         _backgroundPicture.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin]
+        
+        let documentsUrl = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        let imageUrl = documentsUrl.URLByAppendingPathComponent("test.png")
+//        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! + "/" + fileName
+
+        _backgroundPicture.image = UIImage(contentsOfFile: imageUrl.absoluteString)
         
         return _backgroundPicture
     }()
@@ -54,15 +60,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         switchToEditMode(nil)
         
-        view.addSubview(pictureButton)
-        pictureButton.centerInSuperview()
-        
         view.addSubview(backgroundPicture)
         backgroundPicture.frame = view.bounds
         
+        view.addSubview(pictureButton)
+        pictureButton.centerInSuperview()
         
     }
-    
     
     //MARK: - Actions
     
@@ -92,6 +96,53 @@ class HomeViewController: UIViewController {
     }
     
     func updatePicture(sender :UIButton){
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
+        actionSheet.addAction(UIAlertAction(title: "Prendre photo", style: UIAlertActionStyle.Default, handler: { (action) in
+            self.selectPicture(.Camera)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Pellicule", style: UIAlertActionStyle.Default, handler: { (action) in
+            self.selectPicture(.CameraRoll)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Annuler", style: UIAlertActionStyle.Cancel, handler: { (action) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func selectPicture(from: PictureFrom){
+        let sourceType: UIImagePickerControllerSourceType = from == PictureFrom.Camera ? .Camera : .PhotoLibrary
+        
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = sourceType
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+
+    }
+    
+    
+    //MARK: - Image Picker delegate
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        if let okImage = image {
+            backgroundPicture.image = okImage
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+                let fileURL = documentsURL.URLByAppendingPathComponent("test.png")
+                if let pngImageData = UIImagePNGRepresentation(okImage) {
+                    pngImageData.writeToURL(fileURL, atomically: false)
+                }
+            }
+
+        }
+        
+
     }
 }
