@@ -29,7 +29,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         _pictureButton.layer.cornerRadius = _pictureButton.width/2.0
         _pictureButton.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin]
         
-        let attributedTitle = NSMutableAttributedString.YOcamera().iconSize(_pictureButton.width * 0.6)
+        let attributedTitle = NSMutableAttributedString.YOcamera()
+        attributedTitle.iconSize = _pictureButton.width * 0.6
         attributedTitle.fontColor = UIColor.whiteColor()
         _pictureButton.setAttributedTitle(attributedTitle, forState: .Normal)
         _pictureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -68,8 +69,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func switchToEditMode(sender: UIBarButtonItem?){
         isEditingMode = false
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(displayOptions))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .Plain, target: self, action: #selector(switchToNormalMode))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(displayOptions))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .Plain, target: self, action: #selector(switchToNormalMode))
         
         pictureButton.hidden = false
     }
@@ -77,8 +78,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func switchToNormalMode(sender: UIBarButtonItem?){
         isEditingMode = false
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Options", style: .Plain, target: self, action: #selector(displayOptions))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modifier", style: .Plain, target: self, action: #selector(switchToEditMode))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Options", style: .Plain, target: self, action: #selector(displayOptions))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modifier", style: .Plain, target: self, action: #selector(switchToEditMode))
         
         pictureButton.hidden = true
     }
@@ -104,7 +105,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.dismissViewControllerAnimated(true, completion: nil)
         }))
         
-        self.presentViewController(actionSheet, animated: true, completion: nil)
+        presentViewController(actionSheet, animated: true, completion: nil)
     }
     
     private func selectPicture(from: PictureFrom){
@@ -114,7 +115,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = sourceType
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            presentViewController(imagePicker, animated: true, completion: nil)
         }
 
     }
@@ -123,7 +124,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     //MARK: - Image Picker delegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
         if let okImage = image {

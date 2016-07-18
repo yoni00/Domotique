@@ -6,19 +6,27 @@
 //  Copyright © 2016 Christophe Haguette. All rights reserved.
 //
 
-//Check icons on http://fontawesome.io/icons/, v4.6
+//Check icons on http://fontawesome.io/icons/ v4.6
 
 extension NSMutableAttributedString  {
     
     var fontColor: UIColor {
         set {
-           self.addAttribute(NSForegroundColorAttributeName, value: newValue, range: NSRange(location: 0, length: self.length))
+            self.addAttribute(NSForegroundColorAttributeName, value: newValue, range: NSRange(location: 0, length: self.length))
         }
         get {
             return UIColor.whiteColor()
         }
     }
-    
+
+    var iconSize: CGFloat {
+        set {
+            addAttribute(NSFontAttributeName, value: UIFont(name: "fontawesome", size: newValue)!, range: NSRange(location: 0, length: length))
+        }
+        get {
+            return 0.0
+        }
+    }
     
     class func YOglass() -> NSMutableAttributedString{
         return self.iconStringFromUnicode("\u{f000}")
@@ -2587,10 +2595,4 @@ extension NSMutableAttributedString  {
     class func iconStringFromUnicode(unicode: String) -> NSMutableAttributedString{
         return NSMutableAttributedString(string: unicode, attributes: [NSFontAttributeName: UIFont(name: "fontawesome", size: 17.0)!])
     }
-    
-    func iconSize (size: CGFloat) -> NSMutableAttributedString{
-        self.addAttribute(NSFontAttributeName, value: UIFont(name: "fontawesome", size: size)!, range: NSRange(location: 0, length: self.length))
-        return self
-    }
-
 }

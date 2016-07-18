@@ -20,6 +20,7 @@
 		B91723321D3D12F100E25731 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B91723311D3D12F100E25731 /* EGOCache.m */; };
 		E93FEA621D343FC10023B12C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FEA611D343FC10023B12C /* HomeViewController.swift */; };
 		E93FEA691D358EB10023B12C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FEA681D358EB10023B12C /* UIView+Helpers.swift */; };
+		E94F84521D3D7F5500FD5B8E /* TriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F84511D3D7F5500FD5B8E /* TriggerView.swift */; };
 		E9C8512E1D3599C100D97E04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C8512D1D3599C100D97E04 /* Assets.xcassets */; };
 		E9C851301D359A9100D97E04 /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9C8512F1D359A8B00D97E04 /* fontawesome.ttf */; };
 		E9C851331D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */; };
@@ -46,6 +47,7 @@
 		E5022B3D4F3FF15FC57713A3 /* Pods-Domotique.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Domotique.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Domotique/Pods-Domotique.debug.xcconfig"; sourceTree = "<group>"; };
 		E93FEA611D343FC10023B12C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E93FEA681D358EB10023B12C /* UIView+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
+		E94F84511D3D7F5500FD5B8E /* TriggerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerView.swift; sourceTree = "<group>"; };
 		E9C8512D1D3599C100D97E04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9C8512F1D359A8B00D97E04 /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
 		E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				E93FEA611D343FC10023B12C /* HomeViewController.swift */,
+				E94F84511D3D7F5500FD5B8E /* TriggerView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				8720B8EF1C6CC2660013A5D7 /* Reachability.m in Sources */,
 				B917232C1D3D0CE200E25731 /* QueueManager.swift in Sources */,
 				E93FEA621D343FC10023B12C /* HomeViewController.swift in Sources */,
+				E94F84521D3D7F5500FD5B8E /* TriggerView.swift in Sources */,
 				E93FEA691D358EB10023B12C /* UIView+Helpers.swift in Sources */,
 				B91723321D3D12F100E25731 /* EGOCache.m in Sources */,
 				E9C851331D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift in Sources */,
