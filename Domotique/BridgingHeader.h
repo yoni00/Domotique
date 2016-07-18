@@ -13,5 +13,5 @@
 #import "CocoaAsyncSocket/GCDAsyncSocket.h"
 #import "DZNEmptyDataSet/UIScrollView+EmptyDataSet.h"
 #import "JGProgressHUD/JGProgressHUD.h"
-
+#import "EGOCache.h"
 #endif /* BridgingHeader_h */

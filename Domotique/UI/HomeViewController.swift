@@ -45,11 +45,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         _backgroundPicture.contentMode = .ScaleAspectFill
         _backgroundPicture.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin]
         
-        let documentsUrl = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-        let imageUrl = documentsUrl.URLByAppendingPathComponent("test.png")
-//        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first! + "/" + fileName
-
-        _backgroundPicture.image = UIImage(contentsOfFile: imageUrl.absoluteString)
+        _backgroundPicture.image = EGOCache.globalCache().imageForKey("test")
         
         return _backgroundPicture
     }()
@@ -133,14 +129,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         if let okImage = image {
             backgroundPicture.image = okImage
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-                let fileURL = documentsURL.URLByAppendingPathComponent("test.png")
-                if let pngImageData = UIImagePNGRepresentation(okImage) {
-                    pngImageData.writeToURL(fileURL, atomically: false)
-                }
-            }
-
+            QueueManager.queueForPictureManagement().addOperationWithBlock({ 
+                EGOCache.globalCache().setImage(okImage, forKey: "test")
+            })
         }
         
 
