@@ -23,7 +23,7 @@ class TriggerView: UIView {
 
         return _glyphLabel
     }()
-
+    
     
     //MARK: - View lifecycle
     
@@ -41,12 +41,10 @@ class TriggerView: UIView {
         let glyph = type == .Light ? NSMutableAttributedString.YOlightbulbO() : NSMutableAttributedString.YOlistAlt()
         glyph.iconSize = height * 0.6
         
-        self.addSubview(glyphLabel)
-        
-        
+        self.addSubview(glyphLabel)        
     }
     
-    class func trigger(type: TriggerViewType) -> TriggerView{
+    class func triggerOfType(type: TriggerViewType) -> TriggerView{
         return TriggerView(frame: CGRect(x: 0, y: 0, width: 60, height: 60), type: type)
     }
 }

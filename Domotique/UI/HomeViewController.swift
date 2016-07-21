@@ -18,7 +18,8 @@ private enum PictureFrom : Int {
 
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var isEditingMode = false
-    
+    var currentMovingTrigger: TriggerView?
+
     //MARK: - UI Components
     
     lazy var pictureButton: UIButton = {
@@ -50,7 +51,13 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         return _backgroundPicture
     }()
-    
+
+    private lazy var panReco: UIPanGestureRecognizer = {
+        let _panReco = UIPanGestureRecognizer(target: self, action: #selector(moveTrigger))
+
+        return _panReco
+    }()
+
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -63,6 +70,16 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addSubview(pictureButton)
         pictureButton.centerInSuperview()
         
+        let trigger1 = TriggerView.triggerOfType(.Light)
+        trigger1.center = CGPoint(x: 100.0, y: 200.0)
+        view.addSubview(trigger1)
+        
+        let trigger2 = TriggerView.triggerOfType(.Light)
+        trigger2.center = CGPoint(x: 200.0, y: 100.0)
+        view.addSubview(trigger2)
+        
+        view.addGestureRecognizer(panReco)
+        
     }
     
     //MARK: - Actions
@@ -73,6 +90,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .Plain, target: self, action: #selector(switchToNormalMode))
         
         pictureButton.hidden = false
+        panReco.enabled = true
     }
     
     func switchToNormalMode(sender: UIBarButtonItem?){
@@ -82,6 +100,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modifier", style: .Plain, target: self, action: #selector(switchToEditMode))
         
         pictureButton.hidden = true
+        panReco.enabled = false
     }
     
     func displayOptions(sender: UIBarButtonItem){
@@ -120,6 +139,28 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     }
     
+    func moveTrigger(panReco: UIPanGestureRecognizer){
+        struct Temp { static var startPoint = CGPoint(x: 0.0, y: 0.0) }
+
+        if let touchedTrigger = currentMovingTrigger{
+            
+            let location = panReco.locationInView(view)
+            
+            switch panReco.state {
+                
+            case .Began:
+                Temp.startPoint.x = touchedTrigger.centerX - location.x
+                Temp.startPoint.y = touchedTrigger.centerY - location.y
+            case .Changed:
+                touchedTrigger.centerX = location.x + Temp.startPoint.x
+                touchedTrigger.centerY = location.y + Temp.startPoint.y
+            case .Ended, .Cancelled, .Failed:
+                currentMovingTrigger = nil
+            default:
+                break
+            }
+        }
+    }
     
     //MARK: - Image Picker delegate
     
@@ -137,4 +178,15 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
 
     }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touchedView = touches.first?.view{
+            if touchedView.isKindOfClass(TriggerView) {
+                currentMovingTrigger = touchedView as? TriggerView
+            }
+        }
+    }
+    
+    
 }
+
