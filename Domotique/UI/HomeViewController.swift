@@ -19,23 +19,26 @@ private enum PictureFrom : Int {
 class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var isEditingMode = false
     var currentMovingTrigger: TriggerView?
+    var triggers = [TriggerView]()
 
     //MARK: - UI Components
     
-    lazy var pictureButton: UIButton = {
+    private lazy var pictureButton: UIButton = {
         let _pictureButton = UIButton()
         
         _pictureButton.width = 66.0
         _pictureButton.height = 66.0
         _pictureButton.layer.cornerRadius = _pictureButton.width/2.0
+        _pictureButton.layer.borderWidth = 2.0
+        _pictureButton.layer.borderColor = UIColor.whiteColor().CGColor
         _pictureButton.autoresizingMask = [.FlexibleBottomMargin, .FlexibleTopMargin, .FlexibleLeftMargin, .FlexibleRightMargin]
         
         let attributedTitle = NSMutableAttributedString.YOcamera()
         attributedTitle.iconSize = _pictureButton.width * 0.6
-        attributedTitle.fontColor = UIColor.whiteColor()
+        attributedTitle.fontColor = .whiteColor()
         _pictureButton.setAttributedTitle(attributedTitle, forState: .Normal)
-        _pictureButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        _pictureButton.backgroundColor = UIColor.blackColor()
+        _pictureButton.setTitleColor(.whiteColor(), forState: .Normal)
+        _pictureButton.backgroundColor = .redColor()
         _pictureButton.alpha = 0.7
         _pictureButton.addTarget(self, action: #selector(updatePicture), forControlEvents: .TouchUpInside)
         
@@ -50,6 +53,18 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         _backgroundPicture.image = EGOCache.globalCache().imageForKey("test")
         
         return _backgroundPicture
+    }()
+    
+    private lazy var lightExplanationView: TriggerExplanationView = {
+        let _lightExplanationView = TriggerExplanationView.explanationOfType(.Light)
+        
+        return _lightExplanationView
+    }()
+
+    private lazy var shutterExplanationView: TriggerExplanationView = {
+        let _shutterExplanationView = TriggerExplanationView.explanationOfType(.Shutter)
+        
+        return _shutterExplanationView
     }()
 
     private lazy var panReco: UIPanGestureRecognizer = {
@@ -70,22 +85,46 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addSubview(pictureButton)
         pictureButton.centerInSuperview()
         
+        lightExplanationView.x = 300
+        lightExplanationView.y = 200
+        view.addSubview(lightExplanationView)
+        
         let trigger1 = TriggerView.triggerOfType(.Light)
         trigger1.center = CGPoint(x: 100.0, y: 200.0)
+        triggers.append(trigger1)
         view.addSubview(trigger1)
         
         let trigger2 = TriggerView.triggerOfType(.Light)
         trigger2.center = CGPoint(x: 200.0, y: 100.0)
+        triggers.append(trigger2)
         view.addSubview(trigger2)
+        
+        
         
         view.addGestureRecognizer(panReco)
         
     }
     
+    
+    //MARK: - UI
+
+    func displayExplanationForTrigger(triggerView: TriggerView){
+        let explanationView = triggerView.type == .Light ? lightExplanationView : shutterExplanationView
+        let margin: CGFloat = 8.0
+        
+        explanationView.centerY = triggerView.centerY
+        if triggerView.x >= explanationView.width + 2 * margin {
+            explanationView.right = triggerView.x - margin
+        } else {
+            explanationView.x = triggerView.right + margin
+        }
+    }
+    
+    
     //MARK: - Actions
     
     func switchToEditMode(sender: UIBarButtonItem?){
-        isEditingMode = false
+        isEditingMode = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(displayOptions))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .Plain, target: self, action: #selector(switchToNormalMode))
         
@@ -154,6 +193,22 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             case .Changed:
                 touchedTrigger.centerX = location.x + Temp.startPoint.x
                 touchedTrigger.centerY = location.y + Temp.startPoint.y
+                
+                // Bounding the trigger into the screen
+
+                if touchedTrigger.bottom > view.height {
+                    touchedTrigger.bottom = view.height
+                } else if touchedTrigger.y < 0 {
+                    touchedTrigger.y = 0
+                }
+
+                if touchedTrigger.right > view.width {
+                    touchedTrigger.right = view.width
+                } else if touchedTrigger.x < 0 {
+                    touchedTrigger.x = 0
+                }
+
+
             case .Ended, .Cancelled, .Failed:
                 currentMovingTrigger = nil
             default:
@@ -161,6 +216,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             }
         }
     }
+    
+    
     
     //MARK: - Image Picker delegate
     
@@ -179,10 +236,17 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     }
     
+    
+    //MARK: - UI view controller delegate
+
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if let touchedView = touches.first?.view{
             if touchedView.isKindOfClass(TriggerView) {
-                currentMovingTrigger = touchedView as? TriggerView
+                if isEditingMode {
+                    currentMovingTrigger = touchedView as? TriggerView
+                } else {
+                    displayExplanationForTrigger(touchedView as! TriggerView )
+                }
             }
         }
     }

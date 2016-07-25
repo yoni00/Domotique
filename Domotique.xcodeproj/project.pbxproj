@@ -24,6 +24,7 @@
 		E9C8512E1D3599C100D97E04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C8512D1D3599C100D97E04 /* Assets.xcassets */; };
 		E9C851301D359A9100D97E04 /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9C8512F1D359A8B00D97E04 /* fontawesome.ttf */; };
 		E9C851331D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */; };
+		E9D1CA8A1D46B21900250286 /* TriggerExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1CA891D46B21900250286 /* TriggerExplanationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		E9C8512D1D3599C100D97E04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9C8512F1D359A8B00D97E04 /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
 		E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
+		E9D1CA891D46B21900250286 /* TriggerExplanationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerExplanationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 		E93FEA601D343C330023B12C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				E9D1CA891D46B21900250286 /* TriggerExplanationView.swift */,
 				E93FEA611D343FC10023B12C /* HomeViewController.swift */,
 				E94F84511D3D7F5500FD5B8E /* TriggerView.swift */,
 			);
@@ -325,6 +328,7 @@
 			files = (
 				871C55F91C44542C009D5B2E /* AppDelegate.swift in Sources */,
 				878BD8CE1C8A26D800B1CACF /* ReorderableFlowLayout.swift in Sources */,
+				E9D1CA8A1D46B21900250286 /* TriggerExplanationView.swift in Sources */,
 				871C56301C455729009D5B2E /* MySingleton.swift in Sources */,
 				87F72E891C90213C006C6E5D /* AddressViewController.swift in Sources */,
 				8720B8EF1C6CC2660013A5D7 /* Reachability.m in Sources */,

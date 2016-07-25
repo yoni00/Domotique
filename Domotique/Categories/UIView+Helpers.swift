@@ -57,7 +57,7 @@ extension UIView{
     var bottom: CGFloat {
         set {
             var newFrame = self.frame
-            newFrame.origin.y = bottom - self.frame.size.height
+            newFrame.origin.y = newValue - self.frame.size.height
             self.frame = newFrame
         }
         get {
