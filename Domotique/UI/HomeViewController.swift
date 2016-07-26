@@ -86,11 +86,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addSubview(pictureButton)
         pictureButton.centerInSuperview()
         
-        lightExplanationView.x = 300
-        lightExplanationView.y = 200
-        view.addSubview(lightExplanationView)
+        shutterExplanationView.x = 300
+        shutterExplanationView.y = 200
+        view.addSubview(shutterExplanationView)
         
-        let trigger1 = TriggerView.triggerOfType(.Light)
+        let trigger1 = TriggerView.triggerOfType(.Shutter)
         trigger1.center = CGPoint(x: 100.0, y: 200.0)
         triggers.append(trigger1)
         view.addSubview(trigger1)
@@ -125,6 +125,9 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         } else if explanationView.bottom > view.height - margin {
             explanationView.bottom = view.height - margin
         }
+        
+        explanationView.hidden = false
+        explanationView.startAnimate()
     }
     
     
@@ -258,6 +261,32 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
     }
     
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if !lightExplanationView.hidden {
+            lightExplanationView.hidden = true
+            lightExplanationView.stopAnimate()
+        }
+        
+        if !shutterExplanationView.hidden {
+            shutterExplanationView.hidden = true
+            shutterExplanationView.stopAnimate()
+            
+        }
+    }
     
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        if !lightExplanationView.hidden {
+            lightExplanationView.hidden = true
+            lightExplanationView.stopAnimate()
+        }
+        
+        if !shutterExplanationView.hidden {
+            shutterExplanationView.hidden = true
+            shutterExplanationView.stopAnimate()
+
+        }
+    }
+    
+
 }
 

@@ -71,6 +71,9 @@ class TriggerView: UIView {
         return TriggerView(frame: CGRect(x: 0, y: 0, width: 60, height: 60), type: type)
     }
     
+    
+    //MARK: - Actions
+
     func triggerAction(swipeReco: UISwipeGestureRecognizer){
 //        switch swipeReco.direction {
 //        case .Up:
@@ -80,6 +83,6 @@ class TriggerView: UIView {
 //        default:
 //            <#code#>
 //        }
-
+        
     }
 }
