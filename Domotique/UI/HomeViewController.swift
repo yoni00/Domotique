@@ -77,6 +77,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = .None
         switchToEditMode(nil)
         
         view.addSubview(backgroundPicture)
@@ -117,6 +118,12 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             explanationView.right = triggerView.x - margin
         } else {
             explanationView.x = triggerView.right + margin
+        }
+        
+        if explanationView.y < margin {
+            explanationView.y = margin
+        } else if explanationView.bottom > view.height - margin {
+            explanationView.bottom = view.height - margin
         }
     }
     
