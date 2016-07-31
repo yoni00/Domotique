@@ -41,7 +41,7 @@ class TriggerExplanationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(frame: CGRect, type: TriggerViewType) {
+    init(frame: CGRect, type: TriggerType) {
         super.init(frame: frame)
         
         layer.cornerRadius = width/2.0
@@ -58,7 +58,7 @@ class TriggerExplanationView: UIView {
     }
     
     
-    class func explanationOfType(type: TriggerViewType) -> TriggerExplanationView{
+    class func explanationOfType(type: TriggerType) -> TriggerExplanationView{
         return TriggerExplanationView(frame: CGRect(x: 0, y: 0, width: 44, height: 120), type: type)
     }
     

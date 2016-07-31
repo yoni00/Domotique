@@ -57,13 +57,13 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     private lazy var lightExplanationView: TriggerExplanationView = {
         let _lightExplanationView = TriggerExplanationView.explanationOfType(.Light)
-        
+        _lightExplanationView.hidden = true
         return _lightExplanationView
     }()
 
     private lazy var shutterExplanationView: TriggerExplanationView = {
-        let _shutterExplanationView = TriggerExplanationView.explanationOfType(.Shutter)
-        
+        let _shutterExplanationView = TriggerExplanationView.explanationOfType(.Light)
+        _shutterExplanationView.hidden = true
         return _shutterExplanationView
     }()
 
@@ -86,9 +86,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addSubview(pictureButton)
         pictureButton.centerInSuperview()
         
-        shutterExplanationView.x = 300
-        shutterExplanationView.y = 200
         view.addSubview(shutterExplanationView)
+        view.addSubview(lightExplanationView)
         
         let trigger1 = TriggerView.triggerOfType(.Shutter)
         trigger1.center = CGPoint(x: 100.0, y: 200.0)
@@ -130,6 +129,18 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         explanationView.startAnimate()
     }
     
+    func hideExplanations(){
+        if !lightExplanationView.hidden {
+            lightExplanationView.hidden = true
+            lightExplanationView.stopAnimate()
+        }
+        
+        if !shutterExplanationView.hidden {
+            shutterExplanationView.hidden = true
+            shutterExplanationView.stopAnimate()
+            
+        }
+    }
     
     //MARK: - Actions
     
@@ -255,6 +266,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 if isEditingMode {
                     currentMovingTrigger = touchedView as? TriggerView
                 } else {
+                    hideExplanations()
                     displayExplanationForTrigger(touchedView as! TriggerView )
                 }
             }
@@ -262,29 +274,11 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if !lightExplanationView.hidden {
-            lightExplanationView.hidden = true
-            lightExplanationView.stopAnimate()
-        }
-        
-        if !shutterExplanationView.hidden {
-            shutterExplanationView.hidden = true
-            shutterExplanationView.stopAnimate()
-            
-        }
+        hideExplanations()
     }
     
     override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-        if !lightExplanationView.hidden {
-            lightExplanationView.hidden = true
-            lightExplanationView.stopAnimate()
-        }
-        
-        if !shutterExplanationView.hidden {
-            shutterExplanationView.hidden = true
-            shutterExplanationView.stopAnimate()
-
-        }
+        hideExplanations()
     }
     
 

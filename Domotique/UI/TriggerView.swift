@@ -8,10 +8,6 @@
 
 import UIKit
 
-enum TriggerViewType {
-    case Shutter
-    case Light
-}
 
 class TriggerView: UIView {
     
@@ -24,7 +20,7 @@ class TriggerView: UIView {
         }
     }
     
-    let type: TriggerViewType
+    let type: TriggerType
     
     //MARK: - UI Components
     
@@ -49,7 +45,7 @@ class TriggerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    init(frame: CGRect, type: TriggerViewType) {
+    init(frame: CGRect, type: TriggerType) {
         self.type = type
 
         super.init(frame: frame)
@@ -58,7 +54,7 @@ class TriggerView: UIView {
         backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.7)
         
         iconLabel.frame = bounds
-        let icon = type == .Light ? NSMutableAttributedString.YOlightbulbO() : NSMutableAttributedString.YOlistAlt()
+        let icon = TriggerHelper.iconForType(type)
         icon.iconSize = height * 0.6
         iconLabel.attributedText = icon
         
@@ -67,7 +63,7 @@ class TriggerView: UIView {
         self.addGestureRecognizer(swipeReco)
     }
     
-    class func triggerOfType(type: TriggerViewType) -> TriggerView{
+    class func triggerOfType(type: TriggerType) -> TriggerView{
         return TriggerView(frame: CGRect(x: 0, y: 0, width: 60, height: 60), type: type)
     }
     

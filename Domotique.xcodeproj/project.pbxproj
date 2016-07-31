@@ -21,10 +21,13 @@
 		E93FEA621D343FC10023B12C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FEA611D343FC10023B12C /* HomeViewController.swift */; };
 		E93FEA691D358EB10023B12C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FEA681D358EB10023B12C /* UIView+Helpers.swift */; };
 		E94F84521D3D7F5500FD5B8E /* TriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F84511D3D7F5500FD5B8E /* TriggerView.swift */; };
+		E9636FA51D4E97EA005DB2DC /* TriggerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9636FA41D4E97EA005DB2DC /* TriggerCell.swift */; };
+		E9636FA71D4EA102005DB2DC /* TriggerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9636FA61D4EA102005DB2DC /* TriggerHelper.swift */; };
 		E9C8512E1D3599C100D97E04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C8512D1D3599C100D97E04 /* Assets.xcassets */; };
 		E9C851301D359A9100D97E04 /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9C8512F1D359A8B00D97E04 /* fontawesome.ttf */; };
 		E9C851331D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */; };
 		E9D1CA8A1D46B21900250286 /* TriggerExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1CA891D46B21900250286 /* TriggerExplanationView.swift */; };
+		E9D1CA941D48054900250286 /* TriggerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D1CA931D48054900250286 /* TriggerListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,10 +52,13 @@
 		E93FEA611D343FC10023B12C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E93FEA681D358EB10023B12C /* UIView+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		E94F84511D3D7F5500FD5B8E /* TriggerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerView.swift; sourceTree = "<group>"; };
+		E9636FA41D4E97EA005DB2DC /* TriggerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerCell.swift; sourceTree = "<group>"; };
+		E9636FA61D4EA102005DB2DC /* TriggerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerHelper.swift; sourceTree = "<group>"; };
 		E9C8512D1D3599C100D97E04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9C8512F1D359A8B00D97E04 /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
 		E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
 		E9D1CA891D46B21900250286 /* TriggerExplanationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerExplanationView.swift; sourceTree = "<group>"; };
+		E9D1CA931D48054900250286 /* TriggerListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,7 @@
 		B917232A1D3D0C5C00E25731 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				E9636FA61D4EA102005DB2DC /* TriggerHelper.swift */,
 				B917232B1D3D0CE200E25731 /* QueueManager.swift */,
 			);
 			path = Managers;
@@ -180,6 +187,8 @@
 				E9D1CA891D46B21900250286 /* TriggerExplanationView.swift */,
 				E93FEA611D343FC10023B12C /* HomeViewController.swift */,
 				E94F84511D3D7F5500FD5B8E /* TriggerView.swift */,
+				E9D1CA931D48054900250286 /* TriggerListViewController.swift */,
+				E9636FA41D4E97EA005DB2DC /* TriggerCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -237,7 +246,7 @@
 				TargetAttributes = {
 					871C55F41C44542C009D5B2E = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 668LQG36YM;
+						DevelopmentTeam = 4T988M8B83;
 					};
 				};
 			};
@@ -328,9 +337,12 @@
 			files = (
 				871C55F91C44542C009D5B2E /* AppDelegate.swift in Sources */,
 				878BD8CE1C8A26D800B1CACF /* ReorderableFlowLayout.swift in Sources */,
+				E9636FA71D4EA102005DB2DC /* TriggerHelper.swift in Sources */,
+				E9636FA51D4E97EA005DB2DC /* TriggerCell.swift in Sources */,
 				E9D1CA8A1D46B21900250286 /* TriggerExplanationView.swift in Sources */,
 				871C56301C455729009D5B2E /* MySingleton.swift in Sources */,
 				87F72E891C90213C006C6E5D /* AddressViewController.swift in Sources */,
+				E9D1CA941D48054900250286 /* TriggerListViewController.swift in Sources */,
 				8720B8EF1C6CC2660013A5D7 /* Reachability.m in Sources */,
 				B917232C1D3D0CE200E25731 /* QueueManager.swift in Sources */,
 				E93FEA621D343FC10023B12C /* HomeViewController.swift in Sources */,
