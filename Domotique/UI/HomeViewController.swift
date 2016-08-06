@@ -146,7 +146,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func switchToEditMode(sender: UIBarButtonItem?){
         isEditingMode = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(displayOptions))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(displayTriggerList))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: .Plain, target: self, action: #selector(switchToNormalMode))
         
         pictureButton.hidden = false
@@ -156,19 +156,19 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func switchToNormalMode(sender: UIBarButtonItem?){
         isEditingMode = false
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Options", style: .Plain, target: self, action: #selector(displayOptions))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Options", style: .Plain, target: self, action: #selector(displaySettings))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Modifier", style: .Plain, target: self, action: #selector(switchToEditMode))
         
         pictureButton.hidden = true
         panReco.enabled = false
     }
     
-    func displayOptions(sender: UIBarButtonItem){
-        
+    func displaySettings(sender: UIBarButtonItem){
+        presentViewController(SettingsViewController(), animated: true, completion: nil)
     }
     
-    func addTrigger(sender: UIBarButtonItem){
-        
+    func displayTriggerList(sender: UIBarButtonItem){
+        navigationController?.pushViewController(TriggerListViewController(), animated: true)
     }
     
     func updatePicture(sender :UIButton){

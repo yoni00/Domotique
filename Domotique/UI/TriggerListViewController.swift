@@ -35,6 +35,14 @@ class TriggerListViewController: UIViewController, UITableViewDataSource, UITabl
     init(){
         super.init(nibName: nil, bundle: nil)
         edgesForExtendedLayout = .None
+        title = "Lampes et volets"
+        
+        for i in 0..<10 {
+            
+            var triggerElement = TriggerElement()
+            triggerElement.type = i%2 == 0 ? TriggerType.Light : TriggerType.Shutter
+            triggerList.append(triggerElement)
+        }
     }
     
     override func viewDidLoad(){
@@ -54,9 +62,13 @@ class TriggerListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(TriggerConstants.triggerCellIdentifier) as! TriggerCell
-        
+        cell.type = triggerList[indexPath.row].type
         
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 70.0
     }
 
     

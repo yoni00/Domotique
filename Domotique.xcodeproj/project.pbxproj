@@ -18,6 +18,9 @@
 		87F72E891C90213C006C6E5D /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F72E881C90213C006C6E5D /* AddressViewController.swift */; };
 		B917232C1D3D0CE200E25731 /* QueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B917232B1D3D0CE200E25731 /* QueueManager.swift */; };
 		B91723321D3D12F100E25731 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B91723311D3D12F100E25731 /* EGOCache.m */; };
+		B996C97D1D509FD800CA42AB /* HomeConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B996C97C1D509FD800CA42AB /* HomeConnectionManager.swift */; };
+		B9E06B1E1D53A4690002908B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E06B1D1D53A4690002908B /* SettingsViewController.swift */; };
+		B9E06B201D53A54E0002908B /* ServerAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E06B1F1D53A54E0002908B /* ServerAddressCell.swift */; };
 		E93FEA621D343FC10023B12C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FEA611D343FC10023B12C /* HomeViewController.swift */; };
 		E93FEA691D358EB10023B12C /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FEA681D358EB10023B12C /* UIView+Helpers.swift */; };
 		E94F84521D3D7F5500FD5B8E /* TriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F84511D3D7F5500FD5B8E /* TriggerView.swift */; };
@@ -48,6 +51,9 @@
 		B917232B1D3D0CE200E25731 /* QueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueManager.swift; sourceTree = "<group>"; };
 		B91723301D3D12F100E25731 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
 		B91723311D3D12F100E25731 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
+		B996C97C1D509FD800CA42AB /* HomeConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeConnectionManager.swift; sourceTree = "<group>"; };
+		B9E06B1D1D53A4690002908B /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B9E06B1F1D53A54E0002908B /* ServerAddressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerAddressCell.swift; sourceTree = "<group>"; };
 		E5022B3D4F3FF15FC57713A3 /* Pods-Domotique.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Domotique.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Domotique/Pods-Domotique.debug.xcconfig"; sourceTree = "<group>"; };
 		E93FEA611D343FC10023B12C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E93FEA681D358EB10023B12C /* UIView+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
@@ -177,6 +183,7 @@
 			children = (
 				E9636FA61D4EA102005DB2DC /* TriggerHelper.swift */,
 				B917232B1D3D0CE200E25731 /* QueueManager.swift */,
+				B996C97C1D509FD800CA42AB /* HomeConnectionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -189,6 +196,8 @@
 				E94F84511D3D7F5500FD5B8E /* TriggerView.swift */,
 				E9D1CA931D48054900250286 /* TriggerListViewController.swift */,
 				E9636FA41D4E97EA005DB2DC /* TriggerCell.swift */,
+				B9E06B1D1D53A4690002908B /* SettingsViewController.swift */,
+				B9E06B1F1D53A54E0002908B /* ServerAddressCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -339,6 +348,7 @@
 				878BD8CE1C8A26D800B1CACF /* ReorderableFlowLayout.swift in Sources */,
 				E9636FA71D4EA102005DB2DC /* TriggerHelper.swift in Sources */,
 				E9636FA51D4E97EA005DB2DC /* TriggerCell.swift in Sources */,
+				B9E06B201D53A54E0002908B /* ServerAddressCell.swift in Sources */,
 				E9D1CA8A1D46B21900250286 /* TriggerExplanationView.swift in Sources */,
 				871C56301C455729009D5B2E /* MySingleton.swift in Sources */,
 				87F72E891C90213C006C6E5D /* AddressViewController.swift in Sources */,
@@ -349,8 +359,10 @@
 				E94F84521D3D7F5500FD5B8E /* TriggerView.swift in Sources */,
 				E93FEA691D358EB10023B12C /* UIView+Helpers.swift in Sources */,
 				B91723321D3D12F100E25731 /* EGOCache.m in Sources */,
+				B996C97D1D509FD800CA42AB /* HomeConnectionManager.swift in Sources */,
 				E9C851331D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift in Sources */,
 				87431E801C459E0C0030009B /* MainViewController.swift in Sources */,
+				B9E06B1E1D53A4690002908B /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
