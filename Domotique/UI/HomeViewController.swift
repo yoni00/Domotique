@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = .None
-        switchToEditMode(nil)
+        switchToNormalMode(nil)
         
         view.addSubview(backgroundPicture)
         backgroundPicture.frame = view.bounds
@@ -164,7 +164,8 @@ class HomeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func displaySettings(sender: UIBarButtonItem){
-        presentViewController(SettingsViewController(), animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: SettingsViewController())
+        presentViewController(navController, animated: true, completion: nil)
     }
     
     func displayTriggerList(sender: UIBarButtonItem){

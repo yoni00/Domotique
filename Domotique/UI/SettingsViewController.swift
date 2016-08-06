@@ -10,8 +10,10 @@ import UIKit
 
 private let serverCellId = "serverCell"
 
-class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
+    var currentTextField: UITextField?
+    
     //MARK: - UI Components
     
     lazy var tableView: UITableView = {
@@ -19,6 +21,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         _tableView.registerClass(ServerAddressCell.self, forCellReuseIdentifier: serverCellId)
         _tableView.delegate = self
         _tableView.dataSource = self
+        _tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         
         return _tableView
     }()
@@ -38,6 +41,10 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad(){
         tableView.frame = view.bounds
+        edgesForExtendedLayout = .None
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Terminé", style: .Plain, target: self, action: #selector(dismiss))
+
         view.addSubview(tableView)
     }
     
@@ -60,6 +67,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             if indexPath.row == 0 {
                 if let serverCell = serverCell() {
                     cell = serverCell
+                    serverCell.textField.delegate = self
                 }
             }
         }
@@ -80,7 +88,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         return nil
     }
-
+    
     
     //MARK: - Cell generators
     
@@ -96,5 +104,38 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         return serverCell
     }
     
+    
+    //MARK: - Action
+    
+    func dismiss(){
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func dismissKeyboard(){
+        if currentTextField != nil {
+            currentTextField!.resignFirstResponder()
+        }
+    }
+
+    
+    //MARK: - Ui textField delegate
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        currentTextField = textField
+        return true
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+        currentTextField = nil
+        return true
+    }
+
+    
+    //MARK: - UI Scroll view delegate
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        dismissKeyboard()
+    }
+
 
 }

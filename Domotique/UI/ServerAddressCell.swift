@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServerAddressCell: UITableViewCell, UITextFieldDelegate{
+class ServerAddressCell: UITableViewCell{
 
     lazy var titleLabel : UILabel = {
         let  _titleLabel = UILabel()
@@ -23,8 +23,7 @@ class ServerAddressCell: UITableViewCell, UITextFieldDelegate{
         _textField.placeholder = "192.168.1.1"
         _textField.font = .systemFontOfSize(17.0, weight: 20.0)
         _textField.textColor = .blackColor()
-        _textField.keyboardType = UIKeyboardType.NumberPad
-        _textField.delegate = self
+        _textField.keyboardType = UIKeyboardType.DecimalPad
         return _textField
     }()
 
