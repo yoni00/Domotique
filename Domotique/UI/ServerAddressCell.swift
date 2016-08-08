@@ -36,6 +36,7 @@ class ServerAddressCell: UITableViewCell{
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        backgroundColor = UIColor.whiteColor()
         contentView.addSubview(titleLabel)
         contentView.addSubview(textField)
         

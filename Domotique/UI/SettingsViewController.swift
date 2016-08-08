@@ -25,6 +25,32 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         return _tableView
     }()
+    
+    lazy var headerView: UIView = {
+        let _headerView = UIView()
+        
+        let bottomLine = UIView()
+        bottomLine.translatesAutoresizingMaskIntoConstraints = false
+        bottomLine.backgroundColor = .blackColor()
+        _headerView.addSubview(bottomLine)
+        
+        let views = ["bottomLine" : bottomLine]
+        
+        _headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|[bottomLine]|",
+            options: NSLayoutFormatOptions(rawValue: 0),
+            metrics: nil,
+            views: views))
+
+        _headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:|->=0-[bottomLine(1)]|",
+            options: NSLayoutFormatOptions(rawValue: 0),
+            metrics: nil,
+            views: views))
+
+        
+        return _headerView
+    }()
 
     
     //MARK: - View Lifecycle
@@ -42,9 +68,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad(){
         tableView.frame = view.bounds
         edgesForExtendedLayout = .None
+        view.backgroundColor = UIColor.backgroundGrey
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Terminé", style: .Plain, target: self, action: #selector(dismiss))
 
+        headerView.frame = view.bounds
+        headerView.height = 20.0
+        tableView.tableHeaderView = headerView
         view.addSubview(tableView)
     }
     
@@ -78,7 +108,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70.0
+        return 50.0
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

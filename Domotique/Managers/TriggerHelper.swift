@@ -21,7 +21,6 @@ struct TriggerConstants{
     static let triggerCellIdentifier = "triggerCell"
     static let lightIcon = NSMutableAttributedString.YOlightbulbO()
     static let shutterIcon = NSMutableAttributedString.YOlistAlt()
-    static let clickableColor = UIColor(colorLiteralRed: 3.0/255, green: 169.0/255, blue: 244.0/255, alpha: 1.0)
 }
 
 

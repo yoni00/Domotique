@@ -26,6 +26,7 @@
 		E94F84521D3D7F5500FD5B8E /* TriggerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94F84511D3D7F5500FD5B8E /* TriggerView.swift */; };
 		E9636FA51D4E97EA005DB2DC /* TriggerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9636FA41D4E97EA005DB2DC /* TriggerCell.swift */; };
 		E9636FA71D4EA102005DB2DC /* TriggerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9636FA61D4EA102005DB2DC /* TriggerHelper.swift */; };
+		E9882E2F1D5933DD0047B80F /* UIcolor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9882E2E1D5933DD0047B80F /* UIcolor+Helpers.swift */; };
 		E9C8512E1D3599C100D97E04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C8512D1D3599C100D97E04 /* Assets.xcassets */; };
 		E9C851301D359A9100D97E04 /* fontawesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9C8512F1D359A8B00D97E04 /* fontawesome.ttf */; };
 		E9C851331D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */; };
@@ -60,6 +61,7 @@
 		E94F84511D3D7F5500FD5B8E /* TriggerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerView.swift; sourceTree = "<group>"; };
 		E9636FA41D4E97EA005DB2DC /* TriggerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerCell.swift; sourceTree = "<group>"; };
 		E9636FA61D4EA102005DB2DC /* TriggerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerHelper.swift; sourceTree = "<group>"; };
+		E9882E2E1D5933DD0047B80F /* UIcolor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIcolor+Helpers.swift"; sourceTree = "<group>"; };
 		E9C8512D1D3599C100D97E04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9C8512F1D359A8B00D97E04 /* fontawesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fontawesome.ttf; sourceTree = "<group>"; };
 		E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Helpers.swift"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				E93FEA681D358EB10023B12C /* UIView+Helpers.swift */,
+				E9882E2E1D5933DD0047B80F /* UIcolor+Helpers.swift */,
 				E9C851321D359D2400D97E04 /* NSMutableAttributedString+Helpers.swift */,
 			);
 			path = Categories;
@@ -351,6 +354,7 @@
 				B9E06B201D53A54E0002908B /* ServerAddressCell.swift in Sources */,
 				E9D1CA8A1D46B21900250286 /* TriggerExplanationView.swift in Sources */,
 				871C56301C455729009D5B2E /* MySingleton.swift in Sources */,
+				E9882E2F1D5933DD0047B80F /* UIcolor+Helpers.swift in Sources */,
 				87F72E891C90213C006C6E5D /* AddressViewController.swift in Sources */,
 				E9D1CA941D48054900250286 /* TriggerListViewController.swift in Sources */,
 				8720B8EF1C6CC2660013A5D7 /* Reachability.m in Sources */,
@@ -478,9 +482,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Domotique/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/Frameworks\n";
 				PRODUCT_BUNDLE_IDENTIFIER = io.yoni.Domotique;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -496,9 +501,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				INFOPLIST_FILE = Domotique/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/Frameworks\n";
 				PRODUCT_BUNDLE_IDENTIFIER = io.yoni.Domotique;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

@@ -34,7 +34,7 @@ class TriggerCell: UITableViewCell {
         let _okButton = UIButton()
         let okIcon = NSMutableAttributedString.YOplusCircle()
         okIcon.iconSize = 30.0
-        okIcon.fontColor = TriggerConstants.clickableColor
+        okIcon.fontColor = UIColor.standardBlue
         _okButton.setAttributedTitle(okIcon, forState: .Normal)
         return _okButton
     }()
@@ -107,11 +107,11 @@ class TriggerCell: UITableViewCell {
                 }
                 
                 upIcon.iconSize = 30.0
-                upIcon.fontColor = TriggerConstants.clickableColor
+                upIcon.fontColor = UIColor.standardBlue
                 upButton.setAttributedTitle(upIcon, forState: .Normal)
 
                 downIcon.iconSize = 30.0
-                downIcon.fontColor = TriggerConstants.clickableColor
+                downIcon.fontColor = UIColor.standardBlue
                 downButton.setAttributedTitle(downIcon, forState: .Normal)
 
             }
