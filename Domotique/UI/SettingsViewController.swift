@@ -13,15 +13,21 @@ private let serverCellId = "serverCell"
 class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     var currentTextField: UITextField?
-    
+    lazy var dismissKeyboardGesture: UITapGestureRecognizer = {
+        let _dismissKeyboardGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        _dismissKeyboardGesture.enabled = false
+        return _dismissKeyboardGesture
+    }()
     //MARK: - UI Components
     
     lazy var tableView: UITableView = {
         let _tableView = UITableView()
         _tableView.registerClass(ServerAddressCell.self, forCellReuseIdentifier: serverCellId)
+        _tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "truc")
         _tableView.delegate = self
         _tableView.dataSource = self
-        _tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
+        _tableView.backgroundColor = .clearColor()
+        _tableView.addGestureRecognizer(self.dismissKeyboardGesture)
         
         return _tableView
     }()
@@ -41,17 +47,16 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views))
-
+        
         _headerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|->=0-[bottomLine(1)]|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views))
-
+        
         
         return _headerView
     }()
-
     
     //MARK: - View Lifecycle
 
@@ -86,7 +91,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -102,7 +107,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         
-        
+        cell.selectionStyle = .None
         
         return cell
     }
@@ -111,14 +116,45 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         return 50.0
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Serveur"
-        }
-        
-        return nil
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 44.0
     }
     
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.frame = view.bounds
+        footerView.height = 44.0
+        
+        let topLine = UIView()
+        topLine.translatesAutoresizingMaskIntoConstraints = false
+        topLine.backgroundColor = .blackColor()
+        footerView.addSubview(topLine)
+        
+        let views = ["topLine" : topLine]
+        
+        footerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|[topLine]|",
+            options: NSLayoutFormatOptions(rawValue: 0),
+            metrics: nil,
+            views: views))
+        
+        footerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:|[topLine(1)]->=0-|",
+            options: NSLayoutFormatOptions(rawValue: 0),
+            metrics: nil,
+            views: views))
+        
+        return footerView
+    }
+    
+    //MARK: - Table view delegate
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if let serverCell = cell as? ServerAddressCell {
+            serverCell.textField.becomeFirstResponder()
+        }
+    }
     
     //MARK: - Cell generators
     
@@ -152,11 +188,15 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         currentTextField = textField
+        dismissKeyboardGesture.enabled = true
         return true
     }
     
     func textFieldShouldEndEditing(textField: UITextField) -> Bool {
         currentTextField = nil
+        dismissKeyboardGesture.enabled = false
+        HomeConnectionManager.sharedInstance.host = textField.text
+        HomeConnectionManager.sharedInstance.connect()
         return true
     }
 

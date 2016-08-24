@@ -15,15 +15,17 @@ class ServerAddressCell: UITableViewCell{
         _titleLabel.text = "IP serveur:"
         _titleLabel.font = .boldSystemFontOfSize(12.0)
         _titleLabel.textColor = .darkGrayColor()
+        _titleLabel.setContentHuggingPriority(UILayoutPriorityDefaultHigh, forAxis: UILayoutConstraintAxis.Horizontal)
         return _titleLabel
     }()
 
     lazy var textField : UITextField = {
         let  _textField = UITextField()
         _textField.placeholder = "192.168.1.1"
-        _textField.font = .systemFontOfSize(17.0, weight: 20.0)
-        _textField.textColor = .blackColor()
+        _textField.font = .systemFontOfSize(17.0)
+        _textField.textColor = UIColor.standardBlue
         _textField.keyboardType = UIKeyboardType.DecimalPad
+        _textField.textAlignment = .Right
         return _textField
     }()
 
@@ -51,18 +53,16 @@ class ServerAddressCell: UITableViewCell{
         
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|-8-[titleLabel]-10-[textField]-8-|",
-            options: .AlignAllCenterY,
+            options: [.AlignAllTop, .AlignAllBottom] ,
             metrics: nil,
             views: views))
-        
-        contentView.addConstraint(NSLayoutConstraint(
-            item: titleLabel,
-            attribute: .CenterY,
-            relatedBy: .Equal,
-            toItem: contentView,
-            attribute: .CenterY,
-            multiplier: 1.0,
-            constant: 0.0))
+
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:|[titleLabel]|",
+            options: NSLayoutFormatOptions(rawValue: 0) ,
+            metrics: nil,
+            views: views))
+
         
     }
 
